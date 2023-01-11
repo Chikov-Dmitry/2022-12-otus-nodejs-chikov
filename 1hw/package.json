@@ -1,0 +1,22 @@
+{
+  "name": "1hw",
+  "version": "1.0.0",
+  "description": "1hw. tree view data",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [
+    "1hw",
+    "tree",
+    "view",
+    "data"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
