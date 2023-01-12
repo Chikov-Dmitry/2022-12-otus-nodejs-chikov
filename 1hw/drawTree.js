@@ -1,33 +1,31 @@
-import tree from './tree.json' assert {type: 'json'}
-
-
 import prefixes from './prefixes.js'
 
-function createTreeArr(obj, lev) {
-  let treeArr = []
 
-  function recursion(obj, lev) {
-    let level = lev ? lev : 0
-    for (const treeKey in obj) {
-      if (treeKey === 'name') {
-        treeArr.push({value: obj[treeKey], level: level})
-      } else if (treeKey === 'items') {
-        level++
-        obj[treeKey].forEach(el => {
-          recursion(el, level)
-        })
+export const drawTree = function (tree) {
+   function createTreeArr (obj, lev) {
+    let treeArr = []
+    function recursion(obj, lev) {
+      let level = lev ? lev : 0
+      for (const treeKey in obj) {
+        if (treeKey === 'name') {
+          treeArr.push({value: obj[treeKey], level: level})
+        } else if (treeKey === 'items') {
+          level++
+          obj[treeKey].forEach(el => {
+            recursion(el, level)
+          })
+        }
       }
     }
+    recursion(obj, lev)
+    return treeArr
   }
-  recursion(obj, lev)
 
-  return treeArr
-}
+  const TreeArr = createTreeArr(tree)
 
-function drawTree(TreeArr) {
   let resStr = ""
   for (let i = 0; i < TreeArr.length; i++) {
-    if (TreeArr[i].level === 0)  resStr +=TreeArr[i].value.toString() +'\n'
+    if (TreeArr[i].level === 0) resStr += TreeArr[i].value.toString() + '\n'
     if (TreeArr[i].level === 1) {
       let space = ""
       let hasNextSibling = checkNextSibling(TreeArr.slice(i, TreeArr.length - 1))
@@ -51,7 +49,7 @@ function drawTree(TreeArr) {
           } else space += prefixes.angle
         }
       }
-      resStr +=space + TreeArr[i].value + '\n'
+      resStr += space + TreeArr[i].value + '\n'
     }
   }
 
@@ -63,7 +61,6 @@ function drawTree(TreeArr) {
         break
       }
     }
-
     return res
   }
 
@@ -78,5 +75,4 @@ function drawTree(TreeArr) {
   return resStr
 }
 
-console.log(drawTree(createTreeArr(tree)))
 

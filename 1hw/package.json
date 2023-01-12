@@ -4,7 +4,8 @@
   "description": "1hw. tree view data",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index",
+    "start_json_tree": "node jsonTree.js",
+    "start_directory_tree": "node directoryTree.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module",
@@ -18,5 +19,8 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "minimist": "^1.2.7"
   }
 }

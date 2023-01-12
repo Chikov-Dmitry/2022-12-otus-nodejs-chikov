@@ -1,6 +1,6 @@
 export default {
   angle: '└── ',
   cross: '├── ',
-  space: '   ',
-  vert: '│   ',
+  space: '  ',
+  vert: '│  ',
 };
