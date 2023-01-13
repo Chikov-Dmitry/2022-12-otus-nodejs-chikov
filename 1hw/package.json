@@ -1,0 +1,26 @@
+{
+  "name": "1hw",
+  "version": "1.0.0",
+  "description": "1hw. tree view data",
+  "main": "index.js",
+  "scripts": {
+    "start_json_tree": "node jsonTree.js",
+    "start_directory_tree": "node directoryTree.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [
+    "1hw",
+    "tree",
+    "view",
+    "data"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "minimist": "^1.2.7"
+  }
+}
