@@ -1,0 +1,14 @@
+{
+  "name": "3hw",
+  "version": "1.0.0",
+  "description": "Тестирование приложения tree",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.4.2"
+  }
+}
