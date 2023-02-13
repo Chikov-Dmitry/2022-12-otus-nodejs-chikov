@@ -1,26 +1,44 @@
 import prefixes from './prefixes.js'
 
 
-export const drawTree = function (tree) {
-   function createTreeArr (obj, lev) {
-    let treeArr = []
-    function recursion(obj, lev) {
-      let level = lev ? lev : 0
-      for (const treeKey in obj) {
-        if (treeKey === 'name') {
-          treeArr.push({value: obj[treeKey], level: level})
-        } else if (treeKey === 'items') {
-          level++
-          obj[treeKey].forEach(el => {
-            recursion(el, level)
-          })
-        }
+export const createTreeArr = function  (obj, lev) {
+  let treeArr = []
+  function recursion(obj, lev) {
+    let level = lev ? lev : 0
+    for (const treeKey in obj) {
+      if (treeKey === 'name') {
+        treeArr.push({value: obj[treeKey], level: level})
+      } else if (treeKey === 'items') {
+        level++
+        obj[treeKey].forEach(el => {
+          recursion(el, level)
+        })
       }
     }
-    recursion(obj, lev)
-    return treeArr
   }
+  recursion(obj, lev)
+  return treeArr
+}
 
+export const checkSibling = function(inputArr, level) {
+  let res = false
+  for (let i = 0; i < inputArr.length; i++) {
+    if (inputArr[i].level === level) {
+      res = true
+      break
+    }
+  }
+  return res
+}
+
+export const checkNextSibling = function (inputArr) {
+  let res = false
+  for (let i = 1; i < inputArr.length; i++) {
+    if (inputArr[0].level === inputArr[i].level) res = true
+  }
+  return res
+}
+export const drawTree = function (tree) {
   const TreeArr = createTreeArr(tree)
 
   let resStr = ""
@@ -53,26 +71,8 @@ export const drawTree = function (tree) {
     }
   }
 
-  function checkSibling(inputArr, level) {
-    let res = false
-    for (let i = 0; i < inputArr.length; i++) {
-      if (inputArr[i].level === level) {
-        res = true
-        break
-      }
-    }
-    return res
-  }
-
-  function checkNextSibling(inputArr) {
-    let res = false
-    for (let i = 1; i < inputArr.length; i++) {
-      if (inputArr[0].level === inputArr[i].level) res = true
-    }
-    return res
-  }
-
   return resStr
 }
+
 
 
