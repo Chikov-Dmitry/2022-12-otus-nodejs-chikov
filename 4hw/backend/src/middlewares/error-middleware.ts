@@ -1,0 +1,17 @@
+import {NextFunction, Request, Response} from "express";
+
+import ApiError from "../exceptions/api-error";
+interface IErrorResponse {
+    status: number
+    message: string
+    code?: number
+    errors?:[]
+}
+export default function (err:IErrorResponse, req:Request, res:Response, next:NextFunction) {
+    console.log(err);
+    if (err instanceof ApiError) {
+        return res.status(err.status).json({message: err.message, errors: err.errors})
+    }
+    return res.status(500).json({message: 'Непредвиденная ошибка'})
+
+};
