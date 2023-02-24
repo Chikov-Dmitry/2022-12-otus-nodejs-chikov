@@ -19,6 +19,9 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {useAuthStore} from "@/stores/auth";
+import {useRouter} from "vue-router";
+
+const router = useRouter()
 
 const AuthStore = useAuthStore()
 
@@ -28,8 +31,15 @@ const password = ref('')
 const error = ref(false)
 const errorMessage = ref('')
 
-function onSubmit() {
-  AuthStore.login(email.value, password.value)
+async function onSubmit() {
+  let response = await AuthStore.login(email.value, password.value)
+  if(response && response.status !==200){
+
+    error.value = true
+    errorMessage.value = response.data.message
+  }else{
+   await router.push('/')
+  }
 }
 </script>
 

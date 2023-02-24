@@ -16,10 +16,11 @@ export const useAuthStore = defineStore('auth', ()=>{
             localStorage.setItem('token', response.data.accessToken)
             isAuth.value = true;
             user.value = response.data.user
+            return response
         }
         catch (e) {
             if(e instanceof AxiosError){
-                return e.response?.data.message
+                return e.response
             }
         }
     }
@@ -37,7 +38,7 @@ export const useAuthStore = defineStore('auth', ()=>{
         }
     }
 
-    async function logout (email: string, password: string){
+    async function logout (){
         try {
             await AuthApi.logout()
             localStorage.removeItem('token')
@@ -53,8 +54,7 @@ export const useAuthStore = defineStore('auth', ()=>{
     
     async function checkAuth(){
         try{
-            const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, {withCredentials: true})
-            console.log(response);
+            const response = await axios.get<AuthResponse>(`${API_URL}/auth/refresh`, {withCredentials: true})
             localStorage.setItem('token', response.data.accessToken)
             isAuth.value = true
             user.value = response.data.user
