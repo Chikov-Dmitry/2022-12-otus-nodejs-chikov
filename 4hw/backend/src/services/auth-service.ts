@@ -1,6 +1,5 @@
 import {IUser, UserModel} from "../db/user-model";
 import bcrypt from "bcrypt"
-import {v4 as uuidV4} from 'uuid'
 import tokenService from './token-service'
 import UserDto from '../dtos/user-dto'
 import ApiError from '../exceptions/api-error'
@@ -13,7 +12,6 @@ class AuthService {
             throw ApiError.BadRequest(`Пользователь с почтовым адресом ${email} уже существует`)
         }
         const hashPassword = await bcrypt.hash(password, 3);
-        const activationLink = uuidV4(); // v34fa-asfasf-142saf-sa-asf
 
         const user = await UserModel.create({name, email, password: hashPassword})
 

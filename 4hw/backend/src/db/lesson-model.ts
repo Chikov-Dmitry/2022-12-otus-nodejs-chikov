@@ -1,4 +1,15 @@
-import {Schema, model} from "mongoose";
+import mongoose, {Schema, model, Document} from "mongoose";
+
+export interface ILesson extends Document {
+    title: string,
+    description: string,
+    video: string,
+    createdAt: Date,
+    course: mongoose.Types.ObjectId,
+    resources: { title: string, link: string }[],
+    comments: { title: string, author: Schema.Types.ObjectId, text: string, date: Date }
+
+}
 
 const Comment = new Schema({
     title: String,
@@ -52,7 +63,8 @@ export const LessonSchema = new Schema({
         ref: "Course",
         require: true
     },
-    resources:[Resource]
+    resources: [Resource],
+    comments: [Comment],
 
 })
 

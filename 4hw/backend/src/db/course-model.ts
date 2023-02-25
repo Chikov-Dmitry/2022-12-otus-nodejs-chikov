@@ -1,7 +1,15 @@
 import {Schema, model, Document} from "mongoose";
 import {LessonModel} from "./lesson-model";
 
-export const CourseSchema = new Schema({
+export interface ICourse extends Document{
+    title: string,
+    description: string,
+    author: Schema.Types.ObjectId,
+    createdAt: Date,
+    lessons: Schema.Types.ObjectId[],
+
+}
+export const CourseSchema = new Schema<ICourse>({
     title:{
         type: String,
         required: [true, 'Title is required'],
