@@ -31,10 +31,6 @@ export const CourseSchema = new Schema<ICourse>({
         type: Date,
         default: Date.now
     },
-    lessons: [{
-        type: Schema.Types.ObjectId,
-        ref: "Lesson"
-    }]
 })
 
 CourseSchema.pre('remove', async (next)=>{

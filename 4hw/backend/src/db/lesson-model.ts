@@ -7,26 +7,9 @@ export interface ILesson extends Document {
     createdAt: Date,
     course: mongoose.Types.ObjectId,
     resources: { title: string, link: string }[],
-    comments: { title: string, author: Schema.Types.ObjectId, text: string, date: Date }
-
 }
 
-const Comment = new Schema({
-    title: String,
-    author: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-    text: {
-        type: String,
-        required: true
-    },
-    date: {
-        type: Date,
-        default: Date.now,
-    },
-});
+
 
 const Resource = new Schema({
     title: {
@@ -64,7 +47,6 @@ export const LessonSchema = new Schema({
         require: true
     },
     resources: [Resource],
-    comments: [Comment],
 
 })
 

@@ -10,7 +10,7 @@ class CourseService {
     async getCourseById(id: string) {
         const isValidId = mongoose.Types.ObjectId.isValid(id)
         if (!isValidId) throw ApiError.BadRequest('Не валидный id')
-        return CourseModel.find({_id: id})
+        return CourseModel.findOne({_id: id})
     }
 
     async createCourse(title: ICourse["title"], description: ICourse['description'], author: ICourse["author"], createdAt: ICourse["createdAt"], lessons: ICourse["lessons"]) {

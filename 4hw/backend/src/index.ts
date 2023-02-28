@@ -6,6 +6,7 @@ import {userRouter} from "./routers/user";
 import {authRouter} from "./routers/auth";
 import {courseRouter} from "./routers/course";
 import {lessonRouter} from "./routers/lesson";
+import {commentRouter} from "./routers/comment";
 import {startDB} from "./db";
 import errorMiddleware from "./middlewares/error-middleware";
 
@@ -26,6 +27,7 @@ app.use(`/${PATH_PREFIX}`, userRouter)
 app.use(`/${PATH_PREFIX}/auth`, authRouter)
 app.use(`/${PATH_PREFIX}`, courseRouter)
 app.use(`/${PATH_PREFIX}`, lessonRouter)
+app.use(`/${PATH_PREFIX}`, commentRouter)
 
 app.use(errorMiddleware)
 

@@ -7,4 +7,7 @@ export default class UserApi{
     static fetchUsers():Promise<AxiosResponse<IUser[]>>{
         return ApiInstance.get<IUser[]>('/users')
     }
+    static getUserById(id: string):Promise<AxiosResponse<IUser>>{
+        return ApiInstance.get<IUser>(`/user/${id}`)
+    }
 }

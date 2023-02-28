@@ -10,6 +10,16 @@ class UserController {
             next(e)
         }
     }
+    async getUserById(req: Request, res: Response, next: NextFunction){
+        try {
+            const id = req.params.userId
+            const user = await UserService.getUserById(id)
+            return res.json(user)
+        }
+        catch (e) {
+            next(e)
+        }
+    }
 }
 
 export default new UserController()

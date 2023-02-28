@@ -8,7 +8,7 @@ class LessonService {
     }
 
     async getLessonById(courseId: ILesson["course"], lessonId: ILesson['_id']) {
-        return LessonModel.find({course: courseId, _id: lessonId})
+        return LessonModel.findOne({course: courseId, _id: lessonId})
     }
 
     async createLesson(title: ILesson["title"], description: ILesson["description"], video: ILesson["video"], createdAt: ILesson["createdAt"], course: ILesson["course"], resources: ILesson["resources"]) {
