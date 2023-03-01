@@ -4,5 +4,6 @@ export interface CourseResponse{
     description?: string,
     author: string,
     createdAt: Date,
+    allowedUsers: string[]
 
 }

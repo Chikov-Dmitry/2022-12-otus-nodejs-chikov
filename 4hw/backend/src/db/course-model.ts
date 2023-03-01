@@ -6,7 +6,7 @@ export interface ICourse extends Document{
     description: string,
     author: Schema.Types.ObjectId,
     createdAt: Date,
-    allowedUsers: [mongoose.Types.ObjectId]
+    allowedUsers: [string]
 }
 export const CourseSchema = new Schema<ICourse>({
     title:{
@@ -31,7 +31,7 @@ export const CourseSchema = new Schema<ICourse>({
         default: Date.now
     },
     allowedUsers: {
-        type: [Schema.Types.ObjectId],
+        type: [String],
         ref: "User"
     }
 })

@@ -5,6 +5,7 @@
       <add-course-btn/>
     </div>
     <div class="text-h3 text-center">Список курсов</div>
+    <div v-if="!courseList.length">Пусто</div>
     <div @click="clickCourse(item)" v-for="(item, index) in courseList" :key="index" class="course text-subtitle-1">
       <span>{{ ++index }} {{ item.title }}</span>
     </div>

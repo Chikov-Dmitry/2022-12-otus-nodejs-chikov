@@ -21,12 +21,11 @@ class CourseService {
 
         return await CourseModel.create({title, description, author, createdAt})
     }
-    async addUser(courseId: mongoose.Types.ObjectId, userId: mongoose.Types.ObjectId){
-        const course = await CourseModel.findOne({_id: courseId})
-        if(!course) throw ApiError.BadRequest('Курс не найден')
-        course.allowedUsers.push(userId)
-        course.save
-        return course
+    async addUser(courseId: string, userId: string){
+        return CourseModel.findOneAndUpdate({_id: courseId},
+            {
+                $push: {allowedUsers: userId}
+            })
     }
 }
 

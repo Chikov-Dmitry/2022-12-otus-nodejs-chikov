@@ -33,9 +33,7 @@ class CourseController {
 
     async addUser(req: Request, res: Response, next: NextFunction) {
         try {
-            const courseId = new mongoose.Types.ObjectId(req.params.id)
-            const userId = new mongoose.Types.ObjectId(req.params.userId)
-            const courseData = await CourseService.addUser(courseId, userId)
+            const courseData = await CourseService.addUser(req.params.id, req.params.userId)
             res.send(courseData)
         } catch (e) {
             next(e)
