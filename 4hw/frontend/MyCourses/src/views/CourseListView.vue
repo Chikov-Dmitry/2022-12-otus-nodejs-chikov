@@ -1,6 +1,9 @@
 <template>
   <app-bar/>
   <v-main>
+    <div class="d-flex align-center justify-end mt-4">
+      <add-course-btn/>
+    </div>
     <div class="text-h3 text-center">Список курсов</div>
     <div @click="clickCourse(item)" v-for="(item, index) in courseList" :key="index" class="course text-subtitle-1">
       <span>{{ ++index }} {{ item.title }}</span>
@@ -15,6 +18,7 @@ import CourseApi from "@/api/CourseApi";
 import type {CourseListResponse} from "@/models/response/courseListResponse";
 import type {CourseResponse} from "@/models/response/courseResponse";
 import {useRouter} from "vue-router";
+import AddCourseBtn from "@/components/course/addCourseBtn.vue";
 
 const router = useRouter()
 

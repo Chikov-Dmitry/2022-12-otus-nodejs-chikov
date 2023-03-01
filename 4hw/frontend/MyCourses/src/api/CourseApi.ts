@@ -10,4 +10,7 @@ export default class CourseApi{
     static getCourseById(id: string):Promise<AxiosResponse<CourseResponse>>{
         return ApiInstance.get(`/course/${id}`)
     }
+    static addCourse(body: {title: string, description: string, author: string}):Promise<AxiosResponse<CourseResponse>>{
+        return ApiInstance.post(`/course`, body)
+    }
 }

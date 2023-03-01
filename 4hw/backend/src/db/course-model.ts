@@ -1,4 +1,4 @@
-import {Schema, model, Document} from "mongoose";
+import mongoose, {Schema, model, Document} from "mongoose";
 import {LessonModel} from "./lesson-model";
 
 export interface ICourse extends Document{
@@ -6,8 +6,7 @@ export interface ICourse extends Document{
     description: string,
     author: Schema.Types.ObjectId,
     createdAt: Date,
-    lessons: Schema.Types.ObjectId[],
-
+    allowedUsers: [mongoose.Types.ObjectId]
 }
 export const CourseSchema = new Schema<ICourse>({
     title:{
@@ -31,11 +30,10 @@ export const CourseSchema = new Schema<ICourse>({
         type: Date,
         default: Date.now
     },
-})
-
-CourseSchema.pre('remove', async (next)=>{
-    //TODO
-    next()
+    allowedUsers: {
+        type: [Schema.Types.ObjectId],
+        ref: "User"
+    }
 })
 
 export const CourseModel = model('Course', CourseSchema)
